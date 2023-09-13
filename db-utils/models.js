@@ -2,11 +2,11 @@ import mongoose from "mongoose";
 
 const studentSchema = new mongoose.Schema({
     id: {
-        type: String,
+        type: 'string',
         required: true,
     },
     name: {
-        type: String,
+        type: 'string',
         required: true,
     },
     age: {
@@ -14,11 +14,15 @@ const studentSchema = new mongoose.Schema({
         required: true,
     },
     dob: {
-        type: String,
+        type: 'string',
         required: true,
     },
     gender: {
-        type: String,
+        type: 'string',
+        required: true,
+    },
+    imageUrl: {
+        type:'string',
         required: true,
     }
 });

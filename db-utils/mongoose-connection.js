@@ -15,7 +15,6 @@ const localMongoUrl ='mongodb://127.0.0.1/test'
 
 const connectToDb = async () => {
     try {
-        const connectionUri = 'mongodb://127.0.0.1/test';
 
         await mongoose.connect(cloudMongoUrl, {
             useNewUrlParser: true,

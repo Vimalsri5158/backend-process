@@ -1,7 +1,8 @@
 
 import express from 'express';
-import { student as studentModel } from '../db-utils/models.js';
 
+import { student as studentModel } from '../db-utils/models.js';
+import {v4}  from 'uuid';
 const studentRouter = express.Router();
 
 
@@ -9,8 +10,7 @@ const studentRouter = express.Router();
 studentRouter.get('/', async (req, res) => {
 
     try{
-        const students = await studentModel.find({}, {id:1, name: 1, age: 1, dob: 1, gender: 1, _id:0});        
-        console.log( students);
+        const students = await studentModel.find({}, {id:1, name: 1, age: 1, dob: 1, gender: 1, imageUrl: 1, _id:0});        
         res.send(students);
 
     }catch(err){
@@ -22,7 +22,7 @@ studentRouter.get('/', async (req, res) => {
 // POST request method
 studentRouter.post('/', async (req, res) => {
     try{
-    const student = new studentModel(req.body);
+    const student = new studentModel({ ...req.body, id: v4() });
     await student.save();
     res.send({ msg: "Student created successfully" });
 }catch(err){
